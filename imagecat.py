@@ -107,12 +107,10 @@ def sigmoid_backward(dA, cache):
 
 def load_data(train_dataset_path,test_dataset_path):
     
-    #train_dataset_path = 'C:/Users/keshav1/Desktop/pythonfiles/Imageclassifier/datasets/train_catvnoncat.h5'
     train_dataset = h5py.File(train_dataset_path, "r")
     train_set_x_orig = np.array(train_dataset["train_set_x"][:]) # your train set features
     train_set_y_orig = np.array(train_dataset["train_set_y"][:]) # your train set labels
 
-    #test_dataset_path = 'C:/Users/keshav1/Desktop/pythonfiles/Imageclassifier/datasets/test_catvnoncat.h5'
     test_dataset = h5py.File(test_dataset_path, "r")
     test_set_x_orig = np.array(test_dataset["test_set_x"][:]) # your test set features
     test_set_y_orig = np.array(test_dataset["test_set_y"][:]) # your test set labels
@@ -461,8 +459,8 @@ def print_mislabeled_images(classes, X, y, p):
             
             
 
-train_dataset_path = 'C:/Users/keshav1/Desktop/pythonfiles/Imageclassifier/datasets/train_catvnoncat.h5'
-test_dataset_path = 'C:/Users/keshav1/Desktop/pythonfiles/Imageclassifier/datasets/test_catvnoncat.h5'
+train_dataset_path = 'datasets/train_catvnoncat.h5'
+test_dataset_path = 'datasets/test_catvnoncat.h5'
 train_x_orig, train_y, test_x_orig, test_y, classes = load_data(train_dataset_path,test_dataset_path)
 
 # Example of a picture
