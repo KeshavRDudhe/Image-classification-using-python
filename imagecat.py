@@ -1,7 +1,27 @@
+#Import library
+
 import numpy as np
 import matplotlib.pyplot as plt
 import h5py
+import time
+import h5py
+import matplotlib.pyplot as plt
+import scipy
+from PIL import Image
+from scipy import ndimage
+from dnn_app_utils_v2 import *
 
+#Setting matplotlib parameters
+
+%matplotlib inline
+plt.rcParams['figure.figsize'] = (5.0, 4.0) # set default size of plots
+plt.rcParams['image.interpolation'] = 'nearest'
+plt.rcParams['image.cmap'] = 'gray'
+
+%load_ext autoreload
+%autoreload 2
+
+np.random.seed(1)
 
 def sigmoid(Z):
     """
@@ -85,11 +105,14 @@ def sigmoid_backward(dA, cache):
 
 
 def load_data():
-    train_dataset = h5py.File('C:/Users/keshav1/Desktop/pythonfiles/Imageclassifier/datasets/train_catvnoncat.h5', "r")
+    
+    train_dataset_path = 'C:/Users/keshav1/Desktop/pythonfiles/Imageclassifier/datasets/train_catvnoncat.h5'
+    train_dataset = h5py.File(train_dataset_path, "r")
     train_set_x_orig = np.array(train_dataset["train_set_x"][:]) # your train set features
     train_set_y_orig = np.array(train_dataset["train_set_y"][:]) # your train set labels
 
-    test_dataset = h5py.File('C:/Users/keshav1/Desktop/pythonfiles/Imageclassifier/datasets/test_catvnoncat.h5', "r")
+    test_dataset_path = 'C:/Users/keshav1/Desktop/pythonfiles/Imageclassifier/datasets/test_catvnoncat.h5'
+    test_dataset = h5py.File(test_dataset_path, "r")
     test_set_x_orig = np.array(test_dataset["test_set_x"][:]) # your test set features
     test_set_y_orig = np.array(test_dataset["test_set_y"][:]) # your test set labels
 
@@ -436,24 +459,7 @@ def print_mislabeled_images(classes, X, y, p):
             plt.title("Prediction: " + classes[int(p[0,index])].decode("utf-8") + " \n Class: " + classes[y[0,index]].decode("utf-8"))
             
             
-import time
-import numpy as np
-import h5py
-import matplotlib.pyplot as plt
-import scipy
-from PIL import Image
-from scipy import ndimage
-from dnn_app_utils_v2 import *
 
-%matplotlib inline
-plt.rcParams['figure.figsize'] = (5.0, 4.0) # set default size of plots
-plt.rcParams['image.interpolation'] = 'nearest'
-plt.rcParams['image.cmap'] = 'gray'
-
-%load_ext autoreload
-%autoreload 2
-
-np.random.seed(1)
 
 train_x_orig, train_y, test_x_orig, test_y, classes = load_data()
 
